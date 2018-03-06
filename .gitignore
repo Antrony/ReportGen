@@ -1,4 +1,6 @@
 
+**/.idea/*
+*.pyc
 /ReportClient/node_modules/
 /ReportApi/reporter/migrations/
 /ReportApi/login/migrations/
