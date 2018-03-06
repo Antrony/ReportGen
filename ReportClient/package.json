@@ -1,0 +1,32 @@
+{
+  "name": "reportclient",
+  "version": "1.0.0",
+  "description": "Report generation client",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Antrony/ReportGen.git"
+  },
+  "keywords": [
+    "Report",
+    "Bill",
+    "PDF"
+  ],
+  "author": "Antony",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Antrony/ReportGen/issues"
+  },
+  "homepage": "https://github.com/Antrony/ReportGen#readme",
+  "dependencies": {
+    "angular": "^1.6.9",
+    "angular-ui-bootstrap": "^2.5.6",
+    "angular-ui-router": "^1.0.3",
+    "express": "^4.16.2",
+    "socket.io": "^2.0.4"
+  }
+}
