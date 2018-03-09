@@ -1,10 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="en" ng-app="app">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Ansel | ReportGen</title>
+        <link rel="shortcut icon" href="favicon.ico"/>
 
-</body>
+        <!--Library Files-->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <link href="assets/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href="assets/css/font-family-open-sans.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="node_modules/toastr/build/toastr.min.css" />
+
+        <!--Development files-->
+        <link href="assets/css/report.css" rel="stylesheet">
+        <link href="assets/css/custom.min.css" rel="stylesheet">
+
+    </head>
+    <body class="nav-md">
+        <!--Main Content-->
+        <div ui-view></div>
+
+        <!--Library Files-->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/particles.min.js"></script>
+
+        <script src="node_modules/angular/angular.min.js"></script>
+        <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script src="node_modules/angular-local-storage/dist/angular-local-storage.min.js"></script>
+        <script src="node_modules/toastr/build/toastr.min.js"></script>
+
+        <!--Development files-->
+        <script src="components/app.module.js"></script>
+        <script src="components/app.value.js"></script>
+
+        <script src="components/login/login.controller.js"></script>
+        <script src="components/login/login.service.js"></script>
+
+        <script src="components/shared/header/header.directive.js"></script>
+        <script src="components/shared/footer/footer.directive.js"></script>
+        <script src="components/shared/leftmenu/leftmenu.directive.js"></script>
+
+        <script src="components/dashboard/dashboard.controller.js"></script>
+        <script src="components/dashboard/dashboard.service.js"></script>
+    </body>
 </html>

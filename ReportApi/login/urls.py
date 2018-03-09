@@ -1,6 +1,7 @@
 from django.conf.urls import url
-from .views import Invalid
+from . import views
 
 urlpatterns = [
-    url('^$', Invalid, name='invalid'),
+    url('^$', views.Invalid, name='invalid'),
+    url('^login/$', views.login_authenticate, name='login'),
 ]

@@ -24,9 +24,11 @@
   "homepage": "https://github.com/Antrony/ReportGen#readme",
   "dependencies": {
     "angular": "^1.6.9",
+    "angular-local-storage": "^0.7.1",
     "angular-ui-bootstrap": "^2.5.6",
     "angular-ui-router": "^1.0.3",
     "express": "^4.16.2",
-    "socket.io": "^2.0.4"
+    "socket.io": "^2.0.4",
+    "toastr": "^2.1.4"
   }
 }

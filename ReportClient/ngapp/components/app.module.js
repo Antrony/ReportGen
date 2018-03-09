@@ -1,4 +1,4 @@
-var app = angular.module('app',['ui.router','ui.bootstrap']);
+var app = angular.module('app',['ui.router','LocalStorageModule']);
 
 app.config(function($stateProvider,$urlRouterProvider,$httpProvider,$locationProvider){
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
@@ -15,4 +15,10 @@ app.config(function($stateProvider,$urlRouterProvider,$httpProvider,$locationPro
         controller:'dashboard'
     });
     $urlRouterProvider.otherwise('/');
+});
+
+app.filter('capitalizeWord', function() {
+    return function(text) {
+      return (!!text) ? text.charAt(0).toUpperCase() + text.substr(1).toLowerCase() : '';
+    }
 });
