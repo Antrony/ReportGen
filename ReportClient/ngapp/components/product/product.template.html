@@ -1,0 +1,68 @@
+<div class="container body">
+  <div class="main_container">
+    <!-- left menu -->
+    <div leftmenu></div>
+
+    <!-- top navigation -->
+    <div header></div>
+    <!-- /top navigation -->
+
+      <!-- page content -->
+  <div class="right_col" role="main">
+
+      <div class="row">
+          <button class="btn btn-primary" type="button" ng-click="showModal();"><i class="fa fa-plus"> Add</i></button>
+  <table class="table table-striped table-bordered" datatable="ng">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Created By</th>
+                <th>Created Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="product in productList">
+                <td>{{ product.product_name | capitalizeWord}}</td>
+                <td>{{ product.product_created_by.username | capitalizeWord}}</td>
+                <td>{{ product.product_created_date | date : "dd MMM yyyy hh:mm a" }}</td>
+                <td ng-if="product.is_active">Active</td>
+                <td ng-if="!product.is_active">Inactive</td>
+            </tr>
+        </tbody>
+</table>
+  </div>
+  </div>
+    <!-- /page content -->
+
+    <!-- footer content -->
+    <div footer></div>
+    <!-- /footer content -->
+</div>
+</div>
+
+<script type="text/ng-template" id="addProduct.template.html">
+    <section class="box">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-title">Add Product</h2>
+      </div>
+     <div class="modal-body" id="modal-body">
+        <form class="formpanel" name="productForm" novalidate>
+                <div class="form-group">
+                <label for="productName"><i class="fa fa-archive"></i> Product Name</label>
+                  <input type="text" class="form-control form-control-sm" id="productName" name="productName" ng-model="makeValidation.productName"  placeholder="Enter Product Name" required/>
+                  <span ng-show="productForm.productName.$touched">
+                  <span style="color:Red" ng-show="productForm.productName.$error.required"> Product Name Required!</span>
+                  </span>
+                </div>
+        </form>
+
+        <div class="modal-footer">
+          <button class="btn btn-default" data-dismiss="modal" aria-hidden="true" ng-click="closemodal()">Cancel</button>
+          <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" id="productSubmit" ng-disabled=" productForm.$invalid" ng-click="addProductData()">OK</button>
+        </div>
+
+      </div>
+
+</section>
+</script>

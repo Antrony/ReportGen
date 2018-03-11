@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
+    'reporter',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +53,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'ReportApi.urls'
 
@@ -92,8 +95,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'report',
         'USER': 'postgres',
-        'PASSWORD': 'next',
-        'HOST': '192.168.10.179',
+        'PASSWORD': 'admin',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }

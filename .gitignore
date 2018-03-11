@@ -4,4 +4,5 @@
 /ReportApi/reporter/migrations/
 /ReportApi/login/migrations/
 /ReportApi/debug.log
+/ReportApi/venv/
 /.idea/

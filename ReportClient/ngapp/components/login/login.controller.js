@@ -43,44 +43,12 @@ particlesJS('particles-js',
       "number": {
         "value": 80,
         "density": {
-          "enable": true03/07/2018 08:14:42 AM,959 ERROR    [views.py:18] {'URL Error': 'Invalid URL'}:
-03/07/2018 08:14:43 AM,226 WARNING  [base.py:93] Not Found: /api/:
-03/07/2018 08:14:43 AM,307 ERROR    [views.py:18] {'URL Error': 'Invalid URL'}:
-03/07/2018 08:14:43 AM,308 WARNING  [base.py:93] Not Found: /api/:
-03/07/2018 08:14:43 AM,619 ERROR    [views.py:18] {'URL Error': 'Invalid URL'}:
-03/07/2018 08:14:43 AM,619 WARNING  [base.py:93] Not Found: /api/:
-03/08/2018 02:25:48 PM,465 ERROR    [views.py:23] {'URL Error': 'Invalid URL'}:
-03/08/2018 02:25:48 PM,701 WARNING  [base.py:93] Not Found: /api/:
-03/08/2018 02:25:48 PM,716 ERROR    [views.py:23] {'URL Error': 'Invalid URL'}:
-03/08/2018 02:25:48 PM,807 WARNING  [base.py:93] Not Found: /api/:
-03/08/2018 02:25:48 PM,841 ERROR    [views.py:23] {'URL Error': 'Invalid URL'}:
-03/08/2018 02:25:48 PM,842 WARNING  [base.py:93] Not Found: /api/:
-03/08/2018 02:25:49 PM,301 ERROR    [views.py:23] {'URL Error': 'Invalid URL'}:
-03/08/2018 02:25:49 PM,302 WARNING  [base.py:93] Not Found: /api/:
-03/08/2018 02:25:53 PM,278 ERROR    [views.py:23] {'URL Error': 'Invalid URL'}:
-03/08/2018 02:25:53 PM,293 WARNING  [base.py:93] Not Found: /api/:
-03/08/2018 02:26:02 PM,21 ERROR    [views.py:23] {'URL Error': 'Invalid URL'}:
-03/08/2018 02:26:02 PM,34 WARNING  [base.py:93] Not Found: /api/:
-03/08/2018 02:26:05 PM,452 ERROR    [views.py:23] {'URL Error': 'Invalid URL'}:
-03/08/2018 02:26:05 PM,467 WARNING  [base.py:93] Not Found: /api/:
-03/08/2018 02:26:09 PM,59 ERROR    [views.py:23] {'URL Error': 'Invalid URL'}:
-03/08/2018 02:26:09 PM,73 WARNING  [base.py:93] Not Found: /api/:
-03/08/2018 03:09:20 PM,541 WARNING  [csrf.py:153] Forbidden (CSRF cookie not set.): /api/v1/auth_login/:
-03/08/2018 03:09:27 PM,880 WARNING  [csrf.py:153] Forbidden (CSRF cookie not set.): /api/v1/auth_login/:
-03/08/2018 03:10:33 PM,521 WARNING  [csrf.py:153] Forbidden (CSRF cookie not set.): /api/v1/auth_login/:
-03/08/2018 03:24:38 PM,66 WARNING  [csrf.py:153] Forbidden (CSRF cookie not set.): /api/v1/auth_login/:
-03/08/2018 03:24:48 PM,279 ERROR    [views.py:23] {'URL Error': 'Invalid URL'}:
-03/08/2018 03:24:48 PM,296 WARNING  [base.py:93] Not Found: /api/:
-03/08/2018 03:24:48 PM,387 ERROR    [views.py:23] {'URL Error': 'Invalid URL'}:
-03/08/2018 03:24:48 PM,388 WARNING  [base.py:93] Not Found: /api/:
-03/08/2018 03:24:48 PM,653 ERROR    [views.py:23] {'URL Error': 'Invalid URL'}:
-03/08/2018 03:24:48 PM,654 WARNING  [base.py:93] Not Found: /api/:
-,
+          "enable": true,
           "value_area": 800
         }
       },
       "color": {
-        "value": "#000000"
+        "value": "#ffffff"
       },
       "shape": {
         "type": "circle",
@@ -119,7 +87,7 @@ particlesJS('particles-js',
       "line_linked": {
         "enable": true,
         "distance": 150,
-        "color": "#000000",
+        "color": "#ffffff",
         "opacity": 0.4,
         "width": 1
       },

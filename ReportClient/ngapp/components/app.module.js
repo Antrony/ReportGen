@@ -1,4 +1,4 @@
-var app = angular.module('app',['ui.router','LocalStorageModule']);
+var app = angular.module('app',['ui.router','LocalStorageModule','datatables','ui.bootstrap']);
 
 app.config(function($stateProvider,$urlRouterProvider,$httpProvider,$locationProvider){
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
@@ -13,6 +13,16 @@ app.config(function($stateProvider,$urlRouterProvider,$httpProvider,$locationPro
         url:'/dashboard',
         templateUrl:'components/dashboard/dashboard.template.html',
         controller:'dashboard'
+    })
+    .state('product',{
+        url:'/product',
+        templateUrl:'components/product/product.template.html',
+        controller:'product'
+    })
+    .state('client',{
+        url:'/client',
+        templateUrl:'components/client/client.template.html',
+        controller:'client'
     });
     $urlRouterProvider.otherwise('/');
 });
