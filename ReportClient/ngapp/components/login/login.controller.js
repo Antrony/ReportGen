@@ -25,6 +25,7 @@ app.controller('login',function($scope,$state,localStorageService,authservice){
                     $scope.loginBtn = false;
                     $scope.loginTxt = 'Login'
                     localStorageService.set('user', response.data);
+                    localStorageService.set('view', 'nav-md');
                     toastr.success('Logged in successfully!')
                     $state.reload();
                 }else if($scope.result.status=='login_failure'){

@@ -208,3 +208,17 @@ body, html {
   	top: 0px;
   	z-index:1;
 }
+.topbar{
+z-index:1;
+position:fixed;
+width:-webkit-fill-available;
+}
+
+.row-bg{
+padding:75px 20px 75px;
+background: #F7F7F7;
+}
+.dash-bg{
+padding:0px 0px 75px;
+background: #F7F7F7;
+}

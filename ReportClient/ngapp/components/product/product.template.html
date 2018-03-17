@@ -1,18 +1,18 @@
+<div ng-class="navClass">
 <div class="container body">
   <div class="main_container">
     <!-- left menu -->
     <div leftmenu></div>
-
     <!-- top navigation -->
-    <div header></div>
+      <div class="topbar">
+        <div header></div>
+      </div>
     <!-- /top navigation -->
-
       <!-- page content -->
   <div class="right_col" role="main">
-
-      <div class="row">
+      <div class="row row-bg">
           <button class="btn btn-primary" type="button" ng-click="showModal();"><i class="fa fa-plus"> Add</i></button>
-  <table class="table table-striped table-bordered" datatable="ng">
+  <table class="table table-bordered table-striped" datatable="ng" dt-options="dtOptions">
         <thead>
             <tr>
                 <th>Product Name</th>
@@ -33,35 +33,33 @@
 </table>
   </div>
   </div>
-    <!-- /page content -->
+      <!-- /page content -->
 
     <!-- footer content -->
     <div footer></div>
     <!-- /footer content -->
 </div>
 </div>
-
+</div>
 <script type="text/ng-template" id="addProduct.template.html">
     <section class="box">
       <div class="modal-header">
         <h2 class="modal-title" id="modal-title">Add Product</h2>
       </div>
      <div class="modal-body" id="modal-body">
-        <form class="formpanel" name="productForm" novalidate>
+        <form class="formpanel" name="productForm" novalidate ng-submit="productForm.$valid && addProductData()">
                 <div class="form-group">
                 <label for="productName"><i class="fa fa-archive"></i> Product Name</label>
-                  <input type="text" class="form-control form-control-sm" id="productName" name="productName" ng-model="makeValidation.productName"  placeholder="Enter Product Name" required/>
+                  <input type="text" class="form-control form-control-sm" id="productName" name="productName" ng-model="makeValidation.productName"  placeholder="Enter Product Name" ng-required="true"/>
                   <span ng-show="productForm.productName.$touched">
                   <span style="color:Red" ng-show="productForm.productName.$error.required"> Product Name Required!</span>
                   </span>
                 </div>
-        </form>
-
         <div class="modal-footer">
-          <button class="btn btn-default" data-dismiss="modal" aria-hidden="true" ng-click="closemodal()">Cancel</button>
-          <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" id="productSubmit" ng-disabled=" productForm.$invalid" ng-click="addProductData()">OK</button>
+          <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" id="productSubmit" type="submit" ng-disabled="productForm.$invalid">OK</button>
+            <button class="btn btn-default" data-dismiss="modal" aria-hidden="true" ng-click="closemodal('cancel')">Cancel</button>
         </div>
-
+     </form>
       </div>
 
 </section>

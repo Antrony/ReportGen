@@ -1,5 +1,8 @@
-app.controller('product',function($scope,$state,productservice,localStorageService,$uibModal){
+app.controller('product', function($scope,$state,productservice,localStorageService,DTOptionsBuilder, $uibModal){
     $scope.token=localStorageService.get('user').token;
+
+    $scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers').withDisplayLength(15).withOption('lengthMenu', [15, 25, 50, 100]).withOption('order', []);
+
     productservice.productData($scope.token).then(function(response){
         $scope.productList=response.data;
     });
@@ -18,7 +21,9 @@ app.controller('product',function($scope,$state,productservice,localStorageServi
                 toastr.success('Product added successfully!')
                 $state.reload()
               }
-         });
+         },function() {
+         //cancel
+        });
   };
 
 });
@@ -31,7 +36,8 @@ app.controller('addProduct', function($scope,$uibModalInstance,token,productserv
         data={'product_name':$scope.makeValidation.productName}
         productservice.sendProductDetail(data,token).then(function(response){
             $scope.pdtresult=response.data
-              if( $scope.pdtresult.status==='success'){
+              if($scope.pdtresult.status==='success'){
+                    console.log($scope.pdtresult)
                     $scope.closemodal('added')
                 }
                 else if( $scope.pdtresult.status==='exists'){
@@ -40,6 +46,6 @@ app.controller('addProduct', function($scope,$uibModalInstance,token,productserv
                     toastr.error('Product not added!')
                }
         });
-        }
+    }
 
 });
