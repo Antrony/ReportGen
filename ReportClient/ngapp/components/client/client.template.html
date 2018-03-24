@@ -43,22 +43,18 @@
             <tr>
                 <th>Program Name</th>
                 <th>Product</th>
-                <th>Client</th>
                 <th>Start Date</th>
                 <th>End Date</th>
                 <th>Total Amount</th>
-                <th>Paid Amount</th>
-                <th>Outstanding Amount</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="program in programList" ng-class="{'selected':program.id == programID}">
                 <td>{{ program.program_name }}</td>
-                <td>{{ client.client_first_name }}</td>
-                <td>{{ client.client_last_name }}</td>
-                <td>{{ client.client_address }}</td>
-                <td>{{ client.client_email }}</td>
-                <td>{{ client.client_phone_number }}</td>
+                <td>{{ program.program_product.product_name }}</td>
+                <td>{{ program.program_start_date | date : "dd MMM yyyy hh:mm a" }}</td>
+                <td>{{ program.program_end_date | date : "dd MMM yyyy hh:mm a" }}</td>
+                <td><i class="fa fa-inr"> {{ program.program_total_amount }}</i></td>
             </tr>
         </tbody>
   </table>
@@ -145,53 +141,58 @@
      <div class="modal-body" id="modal-body">
         <form class="formpanel" name="programForm" novalidate ng-submit="programForm.$valid && addProgramData()">
                 <div class="form-group">
-                <label for="programName"><i class="fa fa-user-circle"></i> Program Name</label>
-                  <input type="text" class="form-control form-control-sm" id="programName" name="programName" ng-model="programData.programName"  placeholder="Enter Client Username" ng-required="true"/>
+                <label for="programName"><i class="fa fa-eye"></i> Program Name</label>
+                  <input type="text" class="form-control form-control-sm" id="programName" name="programName" ng-model="programData.programName"  placeholder="Enter Program Name" ng-required="true"/>
                   <span ng-show="programForm.programName.$touched">
-                  <span style="color:Red" ng-show="programForm.clientName.$error.required"> Client Username Required!</span>
-                  <span style="color:Red" ng-show="programForm.clientName.$error.pattern"> Only Lowercase alphabets allowed!</span>
+                  <span style="color:Red" ng-show="programForm.programName.$error.required"> Program Name Required!</span>
                   </span>
                 </div>
             <div class="form-group">
-                <label for="clientFirstName"><i class="fa fa-user"></i> Client First Name</label>
-                  <input type="text" class="form-control form-control-sm" id="clientFirstName" name="clientFirstName" ng-model="clientData.clientFirstName"  placeholder="Enter Client First Name" ng-pattern="/^[A-Za-z]+$/" ng-required="true"/>
-                  <span ng-show="programForm.clientFirstName.$touched">
-                  <span style="color:Red" ng-show="programForm.clientFirstName.$error.required"> Client First Name Required!</span>
-                    <span style="color:Red" ng-show="programForm.clientFirstName.$error.pattern"> First Name Must Have Only letters!</span>
-                  </span>
+                    <label>
+                        <div class="fa fa-archive"> Product Name</div>
+                    </label>
+                    <select class="form-control form-control-sm" name="productId" id="productId" ng-model="programData.productId"
+                            ng-options="product.id as product.product_name for product in productList" required>
+                        <option value="">-- SELECT PRODUCT --</option>
+                    </select>
+                    <span style="color:Red"
+                          ng-show="programForm.productId.$touched && programForm.productId.$invalid"> Product Required!</span>
                 </div>
             <div class="form-group">
-                <label for="clientLastName"><i class="fa fa-user"></i> Client Last Name</label>
-                  <input type="text" class="form-control form-control-sm" id="clientLastName" name="clientLastName" ng-model="clientData.clientLastName"  placeholder="Enter Client Last Name" ng-pattern="/^[A-Za-z]+$/" ng-required="true"/>
-                  <span ng-show="clientForm.clientLastName.$touched">
-                  <span style="color:Red" ng-show="clientForm.clientLastName.$error.required"> Client Last Name Required!</span>
-                  <span style="color:Red" ng-show="clientForm.clientLastName.$error.pattern"> Last Name Must Have Only letters!</span>
-                  </span>
-                </div>
+                <label><i class="fa fa-play"></i> Program Start Date</label>
+                  <p class="input-group">
+                <input type="text" class="form-control" name="startDate" uib-datepicker-popup="dd/MM/yy" ng-model="programData.startDate" ng-change="changeEndDate();" is-open="startPicker" datepicker-options="stDateOptions" ng-required="true" placeholder="Select Start Date" close-text="Close"/>
+                 <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openStart()"><i class="fa fa-calendar"></i></button>
+                </span>
+                     </p>
+                <span ng-show="programForm.startDate.$touched">
+                  <span style="color:Red" ng-show="programForm.startDate.$error.required"> Program Start Date Required!</span>
+                    <span style="color:Red" ng-show="!programForm.startDate.$error.required && programForm.startDate.$invalid"> Program Start Date Invalid!</span>
+              </span>
+            </div>
             <div class="form-group">
-                <label for="clientAddress"><i class="fa fa-address-card"></i> Client Address</label>
-                  <textarea class="form-control form-control-sm" id="clientAddress" name="clientAddress" ng-model="clientData.clientAddress"  placeholder="Enter Client Address" ng-required="true"></textarea>
-                  <span ng-show="clientForm.clientAddress.$touched">
-                  <span style="color:Red" ng-show="clientForm.clientAddress.$error.required"> Client Address Required!</span>
-                  </span>
-                </div>
+                <label><i class="fa fa-stop"></i> Program End Date</label>
+                  <p class="input-group">
+                    <input type="text" class="form-control" name="endDate" uib-datepicker-popup="dd/MM/yy" ng-model="programData.endDate" is-open="endPicker" datepicker-options="enDateOptions" ng-required="true" placeholder="Select End Date" close-text="Close"/>
+                     <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="openEnd()"><i class="fa fa-calendar"></i></button>
+                    </span>
+                 </p>
+                <span ng-show="programForm.endDate.$touched">
+                  <span style="color:Red" ng-show="programForm.endDate.$error.required"> Program End Date Required!</span>
+                    <span style="color:Red" ng-show="!programForm.endDate.$error.required && programForm.endDate.$invalid"> Program End Date Invalid!</span>
+              </span>
+            </div>
             <div class="form-group">
-                <label for="clientEmail"><i class="fa fa-envelope"></i> Client Email</label>
-                  <input type="email" class="form-control form-control-sm" id="clientEmail" name="clientEmail" ng-model="clientData.clientEmail"  placeholder="Enter Client Email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" ng-required="true"/>
-                  <span ng-show="clientForm.clientEmail.$touched">
-                  <span style="color:Red" ng-show="clientForm.clientEmail.$error.required"> Client Email Required!</span>
-                    <span style="color:Red" ng-show="clientForm.clientEmail.$error.pattern">Enter Valid Email!</span>
-                  </span>
-                </div>
-            <div class="form-group">
-                <label for="clientPhone"><i class="fa fa-phone"></i> Client Phone Number</label>
-                  <input type="number" min="0" class="form-control form-control-sm" id="clientPhone" name="clientPhone" ng-model="clientData.clientPhone"  placeholder="Enter Client Phone Number" ng-required="true"/>
-                  <span ng-show="clientForm.clientPhone.$touched">
-                  <span style="color:Red" ng-show="clientForm.clientPhone.$error.required"> Client Phone Number Required!</span>
+                <label for="programTotalAmount"><i class="fa fa-inr"></i> Program Total Amount</label>
+                  <input type="number" min="0" class="form-control form-control-sm" id="programTotalAmount" name="programTotalAmount" ng-model="programData.programTotalAmount"  placeholder="Enter Program Total Amount" ng-required="true"/>
+                  <span ng-show="programForm.programTotalAmount.$touched">
+                  <span style="color:Red" ng-show="programForm.programTotalAmount.$error.required"> Program Total Amount Required!</span>
                   </span>
                 </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" id="clientSubmit" type="submit" ng-disabled="clientForm.$invalid">OK</button>
+            <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" id="programSubmit" type="submit" ng-disabled="programForm.$invalid">OK</button>
             <button class="btn btn-default" data-dismiss="modal" aria-hidden="true" ng-click="closemodal('cancel')">Cancel</button>
         </div>
      </form>

@@ -2,7 +2,7 @@ app.controller('client',function($scope,$state,clientservice,localStorageService
 
     $scope.token=localStorageService.get('user').token;
     $scope.programPage = false;
-    $scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers').withDisplayLength(15).withOption('lengthMenu', [15, 25, 50, 100]).withOption('order', []);
+    $scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers').withDisplayLength(10).withOption('lengthMenu', [10, 25, 50, 100]).withOption('order', []);
 
     clientservice.clientData($scope.token).then(function(response){
         $scope.clientList=response.data;
@@ -31,9 +31,8 @@ app.controller('client',function($scope,$state,clientservice,localStorageService
     $scope.getPrograms = function(clientID){
         $scope.clientID = clientID;
         $scope.programPage = true;
-        clientservice.programData($scope.token).then(function(response){
+        clientservice.getProgramData({'client_id':$scope.clientID},$scope.token).then(function(response){
             $scope.programList=response.data;
-            console.log($scope.programList)
         });
     }
 
@@ -48,12 +47,15 @@ app.controller('client',function($scope,$state,clientservice,localStorageService
         resolve: {
                 token: function() {
                     return $scope.token
+                },
+                clientID: function() {
+                    return $scope.clientID
                 }
             }
         }).result.then(function(status) {
         if(status=='added'){
             toastr.success('Program added successfully!')
-            $state.reload()
+            $scope.getPrograms($scope.clientID)
         }
         },function() {
         //cancel
@@ -81,21 +83,58 @@ app.controller('addClient', function($scope,$uibModalInstance,token,clientservic
 
 });
 
-app.controller('addProgram', function($scope,$uibModalInstance,token,clientservice) {
+app.controller('addProgram', function($scope,$uibModalInstance,token,clientID,clientservice,productservice) {
     $scope.closemodal=function(status){
         $uibModalInstance.close(status);
+    };
+    productservice.productData(token).then(function(response){
+        $scope.productList=response.data;
+    });
+    clientservice.clientData(token).then(function(response){
+        $scope.clientList=response.data;
+    });
+
+    $scope.startPicker=false;
+    $scope.endPicker=false;
+    $scope.programData = {};
+
+    $scope.programData.startDate = new Date();
+    $scope.programData.endDate = new Date();
+
+    $scope.stDateOptions = {
+        minDate: new Date(),
+        startingDay: 1
+    };
+
+    $scope.openStart = function () {
+        $scope.startPicker=true;
+    };
+
+    $scope.changeEndDate = function () {
+        if($scope.programData.endDate<$scope.programData.startDate){
+            $scope.programData.endDate = $scope.programData.startDate;
+        }
+    };
+
+    $scope.openEnd = function () {
+        $scope.endPicker=true;
+        $scope.enDateOptions = {
+            minDate: $scope.programData.startDate,
+            startingDay: 1
+        };
     }
+
     $scope.addProgramData=function(){
-        clientservice.sendProgramDetail({'client_data':$scope.programData},token).then(function(response){
-            $scope.programresult=response.data
-            console.log($scope.programresult)
+        $scope.programData['clientId'] = clientID;
+        clientservice.sendProgramDetail({'program_data':$scope.programData},token).then(function(response){
+            $scope.programresult=response.data;
               if($scope.programresult.status==='success'){
                     $scope.closemodal('added')
                 }
                 else if( $scope.programresult.status==='exists'){
-                    toastr.error('Client username already exists!')
+                    toastr.error('Program name already exists!')
                 }else{
-                    toastr.error('Client not added!')
+                    toastr.error('Program not added!')
                }
         });
     }

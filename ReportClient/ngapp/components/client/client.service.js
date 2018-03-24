@@ -7,18 +7,25 @@ app.factory('clientservice',function($http, globalValue){
        {
         headers: {'Authorization': 'Token '+ token}
        });
-    }
+    };
     obj.sendClientDetail = function(data,token){
         return $http.post(url+'add_client/?format=json',data,
        {
         headers: {'Authorization': 'Token '+ token}
        });
-    }
-    obj.programData = function(token){
-       return $http.get(url+'program_list/?format=json',
+    };
+    obj.getProgramData = function(data,token){
+       return $http.post(url+'program_list/?format=json',data,
        {
         headers: {'Authorization': 'Token '+ token}
        });
-    }
+    };
+    obj.sendProgramDetail = function(data,token){
+        return $http.post(url+'add_program/?format=json',data,
+       {
+        headers: {'Authorization': 'Token '+ token}
+       });
+    };
+
     return obj;
 });

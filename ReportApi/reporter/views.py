@@ -62,12 +62,34 @@ def add_client(request):
         logging.error({'Request Error': e})
         return Response('Request Error ' + str(e))
 
-@api_view(['GET'])
+
+@api_view(['POST'])
 def get_program(request):
     try:
-        program_list = Program.objects.all().order_by('-id')
+        client_id = request.data.get('client_id')
+        program_list = Program.objects.filter(program_client=client_id).order_by('-id')
         serilized_program = ProgramSerializer(program_list, many=True).data
         return Response(serilized_program)
+    except Exception as e:
+        logging.error({'Request Error': e})
+        return Response('Request Error ' + str(e))
+
+
+@api_view(['POST'])
+def add_program(request):
+    try:
+        program_data = request.data.get('program_data')
+        if not Program.objects.filter(program_name=program_data['programName'].lower()).exists():
+            insert_program = Program(program_name=program_data['programName'].lower(),
+                                    program_product_id=program_data['productId'],
+                                    program_client_id=program_data['clientId'],
+                                    program_start_date=program_data['startDate'],
+                                    program_end_date=program_data['endDate'],
+                                    program_total_amount=program_data['programTotalAmount'])
+            insert_program.save()
+            return Response({'status': 'success'})
+        else:
+            return Response({'status': 'exists'})
     except Exception as e:
         logging.error({'Request Error': e})
         return Response('Request Error ' + str(e))

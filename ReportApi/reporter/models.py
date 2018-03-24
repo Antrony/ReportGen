@@ -20,9 +20,8 @@ class Client(models.Model):
 
 class Program(models.Model):
     program_name = models.CharField(max_length=255, default='null')
-    program_product = models.ForeignKey(User, on_delete=models.CASCADE)
+    program_product = models.ForeignKey(Products, on_delete=models.CASCADE)
     program_client = models.ForeignKey(Client, on_delete=models.CASCADE)
     program_start_date = models.DateTimeField(null=True, blank=True)
     program_end_date = models.DateTimeField(null=True, blank=True)
     program_total_amount = models.IntegerField(default='null')
-    program_paid_amount = models.IntegerField(default='null')

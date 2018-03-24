@@ -1,7 +1,7 @@
 app.controller('product', function($scope,$state,productservice,localStorageService,DTOptionsBuilder,$uibModal){
     $scope.token=localStorageService.get('user').token;
 
-    $scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers').withDisplayLength(15).withOption('lengthMenu', [15, 25, 50, 100]).withOption('order', []);
+    $scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers').withDisplayLength(10).withOption('lengthMenu', [10, 25, 50, 100]).withOption('order', []);
 
     productservice.productData($scope.token).then(function(response){
         $scope.productList=response.data;

@@ -7,4 +7,5 @@ urlpatterns = [
     url('^client_list/$', views.get_client, name='client_list'),
     url('^add_client/$', views.add_client, name='add_client'),
     url('^program_list/$', views.get_program, name='program_list'),
+    url('^add_program/$', views.add_program, name='add_program'),
 ]
