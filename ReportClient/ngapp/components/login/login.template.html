@@ -13,7 +13,7 @@
   					<hr>
   					<hr class="short">
   				</div>
-  				<form name="loginForm">
+  				<form name="loginForm" ng-submit="login();">
   					<div class="col-3">
 			        	<input class="effect-2" type="text" placeholder="Username..." ng-model="login.username">
 			            <span class="focus-border"></span>
@@ -23,16 +23,16 @@
 			        </div>
 
 			        <div class="forget">
-			        	<button class="btn btn-default btn-sm">FORGOT PASSWORD?</button>
+			        	<button class="btn btn-primary btn-lg">{{loginTxt}}</button>
 			        </div>
 
   				</form>
   			</div>
-  			<a href="" ng-disabled="loginBtn" ng-click="login()">
+  			<!--<a href="" ng-disabled="loginBtn" ng-click="login()">-->
   				<div class="enterButton">
-	  				<i class="fa fa-lock fa-2x text-white"></i><br>
-	  				<span class="enterText text-white">{{loginTxt}}</span>
+	  				<i class="fa fa-tv fa-2x text-white"></i><br>
+	  				<span class="enterText text-white">Amirtha TV</span>
 	  			</div>
-  			</a>
+  			<!--</a>-->
 		</div>
 </div>

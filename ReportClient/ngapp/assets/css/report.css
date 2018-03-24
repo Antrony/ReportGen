@@ -126,8 +126,7 @@ input::placeholder{
 .forget button{
 	margin-top: 50px;
 	border-radius: 0;
-	color: #aaa;
-	margin-left: 50px;
+	margin-left: 145px;
 	font-weight: 700;
 }
 
@@ -221,4 +220,12 @@ background: #F7F7F7;
 .dash-bg{
 padding:0px 0px 75px;
 background: #F7F7F7;
+}
+
+::-webkit-input-placeholder {
+    font-size: 15px!important;
+}
+
+.clienttr td{
+    cursor: pointer;
 }

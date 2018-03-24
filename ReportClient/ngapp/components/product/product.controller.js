@@ -1,4 +1,4 @@
-app.controller('product', function($scope,$state,productservice,localStorageService,DTOptionsBuilder, $uibModal){
+app.controller('product', function($scope,$state,productservice,localStorageService,DTOptionsBuilder,$uibModal){
     $scope.token=localStorageService.get('user').token;
 
     $scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers').withDisplayLength(15).withOption('lengthMenu', [15, 25, 50, 100]).withOption('order', []);
@@ -24,7 +24,7 @@ app.controller('product', function($scope,$state,productservice,localStorageServ
          },function() {
          //cancel
         });
-  };
+    };
 
 });
 
@@ -37,7 +37,6 @@ app.controller('addProduct', function($scope,$uibModalInstance,token,productserv
         productservice.sendProductDetail(data,token).then(function(response){
             $scope.pdtresult=response.data
               if($scope.pdtresult.status==='success'){
-                    console.log($scope.pdtresult)
                     $scope.closemodal('added')
                 }
                 else if( $scope.pdtresult.status==='exists'){

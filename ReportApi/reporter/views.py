@@ -2,30 +2,72 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from .models import *
-from .serializers import ProductSerializer
+from .serializers import *
 
 import logging
+
 
 @api_view(['GET'])
 def get_product(request):
     try:
         product_list = Products.objects.all().order_by('-id')
-        serilized_product=ProductSerializer(product_list,many=True).data
+        serilized_product = ProductSerializer(product_list, many=True).data
         return Response(serilized_product)
     except Exception as e:
         logging.error({'Request Error': e})
         return Response('Request Error ' + str(e))
 
+
 @api_view(['POST'])
 def add_product(request):
     try:
-        product_name = request.data.get('product_name')
+        product_name = request.data.get('product_name').lower()
         if not Products.objects.filter(product_name=product_name).exists():
-            insert_product = Products(product_name=product_name,product_created_by=request.user)
+            insert_product = Products(product_name=product_name, product_created_by=request.user)
             insert_product.save()
-            return Response({'status':'success'})
+            return Response({'status': 'success'})
         else:
             return Response({'status': 'exists'})
+    except Exception as e:
+        logging.error({'Request Error': e})
+        return Response('Request Error ' + str(e))
+
+
+@api_view(['GET'])
+def get_client(request):
+    try:
+        client_list = Client.objects.all().order_by('-id')
+        serilized_client = ClientSerializer(client_list, many=True).data
+        return Response(serilized_client)
+    except Exception as e:
+        logging.error({'Request Error': e})
+        return Response('Request Error ' + str(e))
+
+
+@api_view(['POST'])
+def add_client(request):
+    try:
+        client_data = request.data.get('client_data')
+        if not Client.objects.filter(client_name=client_data['clientName']).exists():
+            insert_client = Client(client_name=client_data['clientName'],
+                                   client_first_name=client_data['clientFirstName'],
+                                   client_last_name=client_data['clientLastName'],
+                                   client_address=client_data['clientAddress'], client_email=client_data['clientEmail'],
+                                   client_phone_number=client_data['clientPhone'])
+            insert_client.save()
+            return Response({'status': 'success'})
+        else:
+            return Response({'status': 'exists'})
+    except Exception as e:
+        logging.error({'Request Error': e})
+        return Response('Request Error ' + str(e))
+
+@api_view(['GET'])
+def get_program(request):
+    try:
+        program_list = Program.objects.all().order_by('-id')
+        serilized_program = ProgramSerializer(program_list, many=True).data
+        return Response(serilized_program)
     except Exception as e:
         logging.error({'Request Error': e})
         return Response('Request Error ' + str(e))
