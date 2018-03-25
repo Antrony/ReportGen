@@ -21,7 +21,7 @@ update_log()
 def Invalid(request):
     content = {'Error': 'Enter the valid URL'}
     logging.error({'URL Error': 'Invalid URL'})
-    return Response(content, status=status.HTTP_404_NOT_FOUND)
+    return Response(content)
 
 
 @api_view(['POST'])
