@@ -22,7 +22,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="product in productList">
+            <tr ng-repeat="product in productList track by $index">
                 <td>{{ product.product_name | capitalizeWord}}</td>
                 <td>{{ product.product_created_by.username | capitalizeWord}}</td>
                 <td>{{ product.product_created_date | date : "dd MMM yyyy hh:mm a" }}</td>
