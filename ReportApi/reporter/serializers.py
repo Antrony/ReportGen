@@ -32,3 +32,10 @@ class ProgramSerializer(serpy.Serializer):
     program_start_date = serpy.Field()
     program_end_date = serpy.Field()
     program_total_amount = serpy.IntField()
+
+
+class PaymentSerializer(serpy.Serializer):
+    id = serpy.IntField()
+    payment_paid_amount = serpy.IntField()
+    payment_paid_date = serpy.Field()
+    payment_program = ProgramSerializer()

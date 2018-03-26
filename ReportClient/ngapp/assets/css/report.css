@@ -221,11 +221,12 @@ background: #F7F7F7;
 padding:0px 0px 75px;
 background: #F7F7F7;
 }
-
 ::-webkit-input-placeholder {
     font-size: 15px!important;
 }
-
 .clienttr td{
     cursor: pointer;
+}
+.tdcursor{
+	cursor: pointer;
 }

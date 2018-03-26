@@ -15,7 +15,7 @@ class Client(models.Model):
     client_last_name = models.CharField(max_length=255, default='null')
     client_address = models.CharField(max_length=255, default='null')
     client_email = models.CharField(max_length=255, default='null')
-    client_phone_number = models.IntegerField(default='null')
+    client_phone_number = models.BigIntegerField()
 
 
 class Program(models.Model):
@@ -24,4 +24,9 @@ class Program(models.Model):
     program_client = models.ForeignKey(Client, on_delete=models.CASCADE)
     program_start_date = models.DateTimeField(null=True, blank=True)
     program_end_date = models.DateTimeField(null=True, blank=True)
-    program_total_amount = models.IntegerField(default='null')
+    program_total_amount = models.BigIntegerField()
+
+class Payment(models.Model):
+    payment_paid_amount = models.BigIntegerField()
+    payment_paid_date = models.DateTimeField(auto_now=True)
+    payment_program = models.ForeignKey(Program, on_delete=models.CASCADE)
