@@ -108,9 +108,9 @@ DATABASES = {
     'default':{
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'report',
-        'USER': 'postgres',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',
+        'USER': 'ansel',
+        'PASSWORD': 'innoadmin',
+        'HOST': 'postgresql.reportgen.svc',
         'PORT': '5432',
     }
 }
